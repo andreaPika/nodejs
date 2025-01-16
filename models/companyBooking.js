@@ -14,4 +14,4 @@ const companyBookingSchema = new mongoose.Schema({
   }]
 }, { timestamps: true });
 
-module.exports = mongoose.model('companyBooking', companyBookingSchema);
+module.exports = mongoose.model('CompanyBooking', companyBookingSchema);
