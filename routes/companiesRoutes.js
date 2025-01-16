@@ -8,7 +8,6 @@ const router = express.Router();
 // Get all companies
 router.get('/', authenticate, async (req, res) => {
   try {
-    console.error('Handler /ateco chiamato');
     const companies = await Company.find().populate('users').populate('typology').populate('ateco');
     res.status(200).json(companies);
   } catch (error) {
