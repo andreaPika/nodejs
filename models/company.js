@@ -5,8 +5,8 @@ const companySchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     phoneNumber: { type: String },
-    typology: { type: String },
-    ateco: { type: String },
+    typology: { type: mongoose.Schema.Types.ObjectId, ref: 'Typology' },
+    ateco: { type: mongoose.Schema.Types.ObjectId, ref: 'Ateco' },
     users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],// Gli utenti associati all'azienda
     // Dettagli aziendali per le ditte
   services: { type: [String] },  // Solo per ditte: servizi offerti

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', authenticate, async (req, res) => {
   try {
     console.error('Handler /ateco chiamato');
-    const companies = await Company.find().populate('users');
+    const companies = await Company.find().populate('users').populate('typology').populate('ateco');
     res.status(200).json(companies);
   } catch (error) {
     res.status(500).json({ message: 'Errore durante la ricerca delle aziende' });
@@ -19,7 +19,7 @@ router.get('/', authenticate, async (req, res) => {
 // Get companies
 router.get('/company/:id', authenticate, async (req, res) => {
   try {
-    const companies = await Company.findById(req.params.id).populate('users');
+    const companies = await Company.findById(req.params.id).populate('users').populate('typology').populate('ateco');
     res.status(200).json(companies);
   } catch (error) {
     res.status(500).json({ message: 'Errore durante la ricerca della azienda'  });
