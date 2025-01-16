@@ -25,7 +25,7 @@ router.get('/:id', authenticate, async (req, res) => {
 
 // Add a new company
 router.post('/', authenticate, async (req, res) => {
-  const { name, address, phoneNumber, services, availability,location } = req.body;
+  const { name, address, phoneNumber, services, availability,location, typology, ateco } = req.body;
 
   try {
     const newCompany = new Company({ name, address, phoneNumber, services, availability,location });
