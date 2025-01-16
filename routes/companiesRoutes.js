@@ -8,6 +8,7 @@ const router = express.Router();
 // Get all companies
 router.get('/', authenticate, async (req, res) => {
   try {
+    console.error('Handler /ateco chiamato');
     const companies = await Company.find().populate('users');
     res.status(200).json(companies);
   } catch (error) {
@@ -63,12 +64,11 @@ router.get('/ateco', authenticate, async (req, res) => {
   }
 });
 
-// Add a new company
+// Add ateco
 router.post('/ateco', authenticate, async (req, res) => {
   const { codice, descrizione } = req.body;
-
   try {
-    const newAteco = new Company({ codice, descrizione });
+    const newAteco = new Ateco({ codice, descrizione });
     await newAteco.save();
     res.status(201).json({ message: 'Ateco created successfully' });
   } catch (error) {
@@ -83,6 +83,19 @@ router.get('/typology', authenticate, async (req, res) => {
     res.status(200).json(typologyCompany);
   } catch (error) {
     res.status(500).json({ message: 'Errore durante la ricerca delle tipologie.' });
+  }
+});
+
+// Add tipology
+router.post('/typology', authenticate, async (req, res) => {
+  const { codice, descrizione } = req.body;
+
+  try {
+    const newAteco = new Typology({ codice, descrizione });
+    await newAteco.save();
+    res.status(201).json({ message: 'Ateco created successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating ateco' });
   }
 });
 
