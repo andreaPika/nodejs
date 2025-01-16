@@ -12,7 +12,7 @@ router.get('/', authenticate, async (req, res) => {
     const companies = await Company.find().populate('users');
     res.status(200).json(companies);
   } catch (error) {
-    res.status(500).json({ message: 'Errore durante la ricerca delle aziende.' });
+    res.status(500).json({ message: 'Errore durante la ricerca' });
   }
 });
 
@@ -22,7 +22,7 @@ router.get('/:id', authenticate, async (req, res) => {
     const companies = await Company.findById(req.params.id).populate('users');
     res.status(200).json(companies);
   } catch (error) {
-    res.status(500).json({ message: 'Errore durante la ricerca delle aziende.'  });
+    res.status(500).json({ message: 'Errore durante la ricerca'  });
   }
 });
 
