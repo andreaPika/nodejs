@@ -12,17 +12,17 @@ router.get('/', authenticate, async (req, res) => {
     const companies = await Company.find().populate('users');
     res.status(200).json(companies);
   } catch (error) {
-    res.status(500).json({ message: 'Errore durante la ricerca' });
+    res.status(500).json({ message: 'Errore durante la ricerca delle aziende' });
   }
 });
 
 // Get companies
-router.get('/:id', authenticate, async (req, res) => {
+router.get('/company/:id', authenticate, async (req, res) => {
   try {
     const companies = await Company.findById(req.params.id).populate('users');
     res.status(200).json(companies);
   } catch (error) {
-    res.status(500).json({ message: 'Errore durante la ricerca'  });
+    res.status(500).json({ message: 'Errore durante la ricerca della azienda'  });
   }
 });
 
@@ -54,12 +54,9 @@ router.get('/search/:query', authenticate, async (req, res) => {
 // Get all ateco
 router.get('/ateco', authenticate, async (req, res) => {
   try {
-    console.log('Richiesta ricevuta');
     const atecoCode = await Ateco.find();
-    console.log('Risultati trovati:', atecoCode);
     res.status(200).json(atecoCode);
   } catch (error) {
-    console.error('Errore durante la ricerca dei dati ateco:', error);
     res.status(500).json({ message: 'Errore durante la ricerca dei dati ateco.' });
   }
 });
@@ -93,9 +90,9 @@ router.post('/typology', authenticate, async (req, res) => {
   try {
     const newAteco = new Typology({ codice, descrizione });
     await newAteco.save();
-    res.status(201).json({ message: 'Ateco created successfully' });
+    res.status(201).json({ message: 'Typology created successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error creating ateco' });
+    res.status(500).json({ message: 'Error creating typology' });
   }
 });
 
