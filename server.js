@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const companyRoutes = require('./routes/companiesRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
@@ -62,6 +63,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/company', companyRoutes);
 app.use('/api/booking', bookingRoutes);
+app.use('/api/search', searchRoutes);
 
 // Avvio del server
 const PORT = process.env.PORT || 3000;
