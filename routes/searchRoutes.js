@@ -9,10 +9,12 @@ router.get('/ricerca', authenticate, async (req, res) => {
     const firstName = req.query.nome || '';
     const lastName = req.query.cognome || '';
     const address = req.query.indirizzo || '';
+    const role = req.query.role || '';
 
     const filters = [];
 
     if (query) {
+    console.log(query);
         filters.push({
             $or: [
                 { firstName: { $regex: new RegExp(query, 'i') } },
@@ -32,6 +34,10 @@ router.get('/ricerca', authenticate, async (req, res) => {
     if (address) {
         filters.push({ address: { $regex: new RegExp(address, 'i') } });
     }
+
+    if (role) {
+            filters.push({ role: role }); // Filtro esatto per il ruolo
+        }
 
     try {
         const user = await Users.find(filters.length > 0 ? { $and: filters } : {});
